@@ -43,7 +43,7 @@
 
 * { box-sizing: border-box; }
 
-html { color-scheme: dark; }
+html { color-scheme: dark; direction: ltr; }
 
 body {
   background:
@@ -51,6 +51,8 @@ body {
     radial-gradient(900px 420px at 88% -8%, rgba(116, 199, 236, .055), transparent 60%),
     var(--base);
   color: var(--text);
+  direction: ltr;
+  text-align: left;
   font-family: var(--font-ui);
   font-size: 14px;
   line-height: 1.65;
@@ -122,6 +124,7 @@ main {
   border-radius: var(--radius-lg);
   padding: 22px 24px;
   box-shadow: var(--shadow);
+  text-align: left;
 }
 
 .panel h2 {
@@ -141,7 +144,7 @@ main {
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
 @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
 
-.row { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.row { display: flex; flex-direction: column; gap: 6px; min-width: 0; text-align: left; }
 
 .row label {
   font-size: 11px;
@@ -149,6 +152,7 @@ main {
   color: var(--subtext0);
   letter-spacing: .7px;
   text-transform: uppercase;
+  text-align: left;
 }
 .row label .opt {
   text-transform: none;
@@ -272,6 +276,26 @@ main {
   box-shadow: 0 0 0 3px rgba(180, 190, 254, .16);
 }
 
+/* ---------- select (previous runs dropdown) ---------- */
+select {
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: var(--radius-sm);
+  padding: 10px 13px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  direction: ltr;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+select:hover { border-color: var(--surface1); }
+select:focus {
+  border-color: var(--lavender);
+  box-shadow: 0 0 0 3px rgba(180, 190, 254, .16);
+}
+
 /* ---------- tools grid ---------- */
 .tools-grid {
   display: grid;
@@ -341,13 +365,13 @@ main {
   gap: 4px;
 }
 .step-block {
-  border-right: 2px solid transparent;
-  padding: 2px 8px 2px 0;
+  border-left: 2px solid transparent;
+  padding: 2px 0 2px 8px;
   border-radius: 8px;
   transition: background var(--transition), border-color var(--transition);
 }
 .step-block.matched {
-  border-right-color: var(--lavender);
+  border-left-color: var(--lavender);
   background: rgba(180, 190, 254, .07);
 }
 .step-block.hidden-step { display: none; }

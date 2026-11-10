@@ -153,16 +153,16 @@ def build_report(run) -> str:
         secrets_preview = "<br>".join(html.escape(l) for l in lines)
 
     return f"""<!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
 <meta charset="utf-8">
 <title>تقرير ReconPlus - {html.escape(target)}</title>
 <style>
-body{{font-family:'Segoe UI',Inter,Tahoma,Arial,sans-serif;background:#1e1e2e;color:#cdd6f4;padding:32px;max-width:900px;margin:auto;line-height:1.6}}
+body{{font-family:'Segoe UI',Inter,Tahoma,Arial,sans-serif;background:#1e1e2e;color:#cdd6f4;padding:32px;max-width:900px;margin:auto;line-height:1.6;direction:ltr;text-align:left}}
 h1{{color:#89b4fa;font-size:24px}}
 h2{{color:#89b4fa;font-size:16px;margin-top:28px}}
 table{{border-collapse:collapse;width:100%;margin:12px 0}}
-td,th{{border:1px solid #313244;padding:9px 12px;text-align:right}}
+td,th{{border:1px solid #313244;padding:9px 12px;text-align:left}}
 th{{background:#181825;color:#a6adc8}}
 .stat{{display:inline-block;background:#181825;border:1px solid #313244;border-radius:12px;padding:14px 22px;margin:6px;min-width:120px;text-align:center;color:#a6adc8}}
 .stat b{{display:block;font-size:22px;color:#b4befe}}

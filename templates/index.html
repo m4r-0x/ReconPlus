@@ -4,14 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Mohamed Ragab">
+<meta name="color-scheme" content="dark">
 <title>:: ReconPlus // automation framework ::</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<div class="scanline"></div>
 
 <header>
-  <div class="term-dot red"></div><div class="term-dot yellow"></div><div class="term-dot green"></div>
+  <div class="dots"><div class="term-dot red"></div><div class="term-dot yellow"></div><div class="term-dot green"></div></div>
   <h1><span class="bracket">[</span>RECON<span class="blink">+</span>PLUS<span class="bracket">]</span></h1>
   <p class="sub">// automated recon pipeline — subdomains → alive → urls → secrets → ports → fuzz → vuln scan</p>
 </header>
@@ -60,7 +63,7 @@
       </div>
     </div>
 
-    <div class="row" style="margin-top:10px">
+    <div class="row" style="margin-top:16px">
       <label>⏮ متابعة من Run سابق <span class="opt">(هيشتغل على نفس المجلد وتقدر تختار ملفاته كـ input)</span></label>
       <select id="prevRuns"><option value="">-- run جديد --</option></select>
     </div>
@@ -183,11 +186,11 @@
         <label>اسم ملف الناتج</label>
         <input id="mergeOutputName" value="merged_custom.txt">
       </div>
-      <button id="mergeBtn" class="btn">🧬 دمج الملفات المحددة</button>
-      <div id="mergeResult" class="muted"></div>
+      <button id="mergeBtn" class="btn" style="margin-top:10px">🧬 دمج الملفات المحددة</button>
+      <div id="mergeResult" class="muted" style="margin-top:8px"></div>
     </div>
 
-    <a id="reportLink" class="btn primary" target="_blank">📄 افتح التقرير الكامل</a>
+    <a id="reportLink" class="btn primary" target="_blank" style="margin-top:14px">📄 افتح التقرير الكامل</a>
   </section>
 
   <footer>

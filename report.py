@@ -47,19 +47,21 @@ def build_report(run) -> str:
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>تقرير Recon - {html.escape(target)}</title>
+<title>تقرير ReconPlus - {html.escape(target)}</title>
 <style>
-body{{font-family:Tahoma,Arial,sans-serif;background:#0f1115;color:#e6e6e6;padding:24px;max-width:900px;margin:auto}}
-h1{{color:#7dd3fc}}
+body{{font-family:'Segoe UI',Inter,Tahoma,Arial,sans-serif;background:#1e1e2e;color:#cdd6f4;padding:32px;max-width:900px;margin:auto;line-height:1.6}}
+h1{{color:#89b4fa;font-size:24px}}
+h2{{color:#89b4fa;font-size:16px;margin-top:28px}}
 table{{border-collapse:collapse;width:100%;margin:12px 0}}
-td,th{{border:1px solid #333;padding:8px 10px;text-align:right}}
-.stat{{display:inline-block;background:#1a1d24;border-radius:10px;padding:14px 20px;margin:6px;min-width:120px;text-align:center}}
-.stat b{{display:block;font-size:22px;color:#7dd3fc}}
-.mono{{font-family:monospace;background:#1a1d24;padding:10px;border-radius:8px;white-space:pre-wrap;font-size:13px}}
+td,th{{border:1px solid #313244;padding:9px 12px;text-align:right}}
+th{{background:#181825;color:#a6adc8}}
+.stat{{display:inline-block;background:#181825;border:1px solid #313244;border-radius:12px;padding:14px 22px;margin:6px;min-width:120px;text-align:center;color:#a6adc8}}
+.stat b{{display:block;font-size:22px;color:#b4befe}}
+.mono{{font-family:Consolas,monospace;background:#11111b;border:1px solid #313244;padding:12px;border-radius:10px;white-space:pre-wrap;font-size:13px;direction:ltr;text-align:left}}
 </style>
 </head>
 <body>
-<h1>تقرير Recon: {html.escape(target)}</h1>
+<h1>تقرير ReconPlus: {html.escape(target)}</h1>
 <p>Run ID: {run['id']}</p>
 
 <div>
@@ -84,6 +86,6 @@ td,th{{border:1px solid #333;padding:8px 10px;text-align:right}}
 <p style="color:#888;font-size:12px">تنبيه: النتائج دي خام وبتحتاج تحقق يدوي قبل أي استخدام (false positives ممكنة خصوصاً في الـ secrets).</p>
 
 <hr style="border-color:#222;margin-top:24px">
-<p style="color:#555;font-size:11px;text-align:center">ReconPlus &copy; Mohamed Ragab</p>
+<p style="color:#6c7086;font-size:11px;text-align:center">ReconPlus &copy; Mohamed Ragab</p>
 </body>
 </html>"""

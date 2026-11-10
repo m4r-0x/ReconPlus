@@ -211,11 +211,55 @@ def api_merge(run_id):
     return jsonify({"ok": True, "output": output_name, "unique_lines": count, "logs": logs})
 
 
+def _load_run_from_disk(run_id):
+    """fallback: يجيب بيانات run قديم من الديسك لو مش موجود في الذاكرة (بعد ريستارت السيرفر)،
+    عشان تقدر تفتح تقرير أي run سابق حتى لو السيرفر اتقفل واتفتح."""
+    runs_dir = Path(runner.RUNS_DIR)
+    meta = None
+    index_file = runs_dir / "runs_index.json"
+    if index_file.exists():
+        try:
+            for m in json.loads(index_file.read_text()):
+                if m.get("run_id") == run_id:
+                    meta = m
+                    break
+        except Exception:
+            pass
+    if meta is None and runs_dir.exists():
+        for d in sorted(runs_dir.iterdir()):
+            if d.is_dir() and run_id in d.name:
+                meta = {"run_id": run_id, "target": "?", "outdir": str(d)}
+                meta_file = d / "run_meta.json"
+                if meta_file.exists():
+                    try:
+                        meta.update(json.loads(meta_file.read_text()))
+                    except Exception:
+                        pass
+                break
+    if meta is None or not Path(meta.get("outdir", "")).exists():
+        return None
+    return {
+        "id": run_id,
+        "target": meta.get("target", "?"),
+        "outdir": meta["outdir"],
+        "done_steps": [],
+        "failed_steps": [],
+        "diagnostics": [],
+        "warnings": [],
+    }
+
+
 @app.route("/api/run/<run_id>/report")
 def api_report(run_id):
     run = runner.RUNS.get(run_id)
+    source = "memory"
+    if run is None:
+        run = _load_run_from_disk(run_id)
+        source = "disk"
     if run is None:
         return "not found", 404
+    # DEBUG مؤقت - بيوضح مصدر الـ run والمسار اللي التقرير بيقرأ منه فعلاً
+    print(f"[api_report] run_id={run_id} source={source} outdir={run['outdir']}", flush=True)
     html_report = report.build_report(run)
     report_path = Path(run["outdir"]) / "report.html"
     report_path.write_text(html_report, encoding="utf-8")
